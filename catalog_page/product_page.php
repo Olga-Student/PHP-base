@@ -33,10 +33,13 @@
                 <input type="text" name="product[price]" value="<?= $product['price']  ?>"
                        class="form-control">
             </div>
-
             <div class="">
-                <button type="submit" class="" value="">Купить</button>
+                <input style="margin-bottom: 10px" id="qty_input" type="number" value="0" name="qty" class="">
             </div>
+            <div class="">
+                <input id="" data-id="<?=$product['id']?>" type="submit" value="Добавить в корзину" class="">
+            </div>
+
                  </form>
 
 
