@@ -12,7 +12,8 @@ $menu = getMenu();
 // Проверяем, что форма пришла.
 if($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    $_SESSION['baskets'][] = array('id' => $_POST['id'], 'title' => $_POST['title'], 'qty' => $_POST['qty']);
+    $_SESSION['baskets'][] = array('id' => $_POST['id'], 'title' => $_POST['title'], 'qty' => $_POST['qty'],
+        'user_id' => $_POST['user_id'], 'price' => $_POST['price']);
     foreach ($_SESSION['baskets'] as $key => $value){
         if($value['id'] = $_POST['id'])
             $_SESSION['baskets'][$key]['qty'] += 1;

@@ -27,22 +27,15 @@ session_start();
                    <td>
 
                    <td>
-                       <form method="post" action="addbasket.php?id=<?= $item['id'] ?>">
-                           Количество товара:
-                       <input  type="submit" value="<?= $item['qty']?>">Добавть
-                           </form>
-
+                           Количество товара:<?= $item['id'] ?>
+                       <a style="text-decoration: none"  href="addbasket.php?id=<?= $item['id'] ?>">Добавть</a>
                    </td>
-
                    <td>
-                       <form method="post" action="delbasket.php?id=<?= $item['id'] ?>">
-
-                           <input  type="submit" value="Удалить">
-                       </form>
                        <a style="text-decoration: none"  href="delbasket.php?id=<?= $item['id'] ?>">Удалить</a>
                    </td>
                    <td>
-                       <a style="text-decoration: none" href="id=<?= $item['id'] ?>">Создать заказ</a>
+
+                       <a style="text-decoration: none"  href="add_order_item.php?id=<?= $item['id'] ?>">Создать заказ</a>
                    </td>
                </tr><br>
 

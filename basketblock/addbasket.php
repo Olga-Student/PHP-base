@@ -7,7 +7,6 @@ session_start();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-
     $productId = $_POST['baskets']['id'];
     $productQty = $_POST['baskets']['qty'];
 
