@@ -1,108 +1,64 @@
-
 <?php
-echo "Hello, World!";
+include_once __DIR__ . "/../config/main.php";
+include ENGINE_DIR . "render.php";
+include ENGINE_DIR . "menu.php";
+include ENGINE_DIR . "products.php";
+
+$products = getProducts();
+$menu = getMenu();
+
+
 ?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <header>
+            <ul class="nav justify-content-end">
+                <?php foreach ($menu as $item): ?>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="<?= $item['link'] ?>">
+                            <?= $item['title'] ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </header>
+        <main>
 
-<?php
-$name = "GeekBrains user";/*переменная*/
-echo "Hello, $name!";
-?>
-
-<?php
-define('MY_CONST', 100);
-echo MY_CONST;
-?>
-
-<?php
-$a = 1;
-echo "$a";
-echo '$a';
-?>
-
-
-
-<?php
-$a = 'Hello,';
-$b = 'world';
-$c = $a . $b;
-echo $c;
-?>
-
-<?php
-$a = 4;
-$b = 5;
-echo $a + $b . '<br>';    // сложение
-echo $a * $b . '<br>';    // умножение
-echo $a - $b . '<br>';    // вычитание
-echo $a / $b . '<br>';  // деление
-echo $a % $b . '<br>'; // остаток от деления
-echo $a ** $b . '<br>'; // возведение в степень
-?>
-
-<?php
-$a = 4;
-$b = 5;
-$a += $b;
-echo 'a = ' . $a;
-$a = 0;
-echo $a++;     // Постинкремент
-echo ++$a;    // Преинкремент
-echo $a--;     // Постдекремент
-echo --$a;    // Предекремент
-?>
-
-<?php
-$a = 4;
-$b = 5;
-var_dump($a == $b);  // Сравнение по значению
-var_dump($a === $b); // Сравнение по значению и типу
-var_dump($a > $b);    // Больше
-var_dump($a < $b);    // Меньше
-var_dump($a <> $b);  // Не равно
-var_dump($a != $b);   // Не равно
-var_dump($a !== $b); // Не равно без приведения типов
-var_dump($a <= $b);  // Меньше или равно
-var_dump($a >= $b);  // Больше или равно?>
-
-DZ1
-
-1-3.
-<?php
-$a = 5;
-$b = '05';
-var_dump($a == $b);   // Почему true?  не сранивается тип данных , только значение; строковое значение переменной b превратится в число, поэтому true
-var_dump((int)'012345');      // Почему 12345? объявлены переменные типа integer целые числа
-var_dump((float)123.0 === (int)123.0); // Почему false? int - целое число, float - дробное с плавающей запятой. Равенство строгое - итог false
-var_dump((int)0 === (int)'hello, world'); // Почему true? значение int 0 - true, значение строки true. true=true
-?>
-1-4.
-<?php
-$number_Lecture = 1;
-$number_DZ = 1;
-$data_Year = 2021;
-//echo "Лекция $number_Lecture";
-//echo "Домашняя работа $number_DZ";
-//echo "Учебный год $data_Year";
-?>
-
-<h1>Лекция <?php echo $number_Lecture?></h1>
-<p>Домашняя работа <?php echo $number_DZ?></p>
-<p>Учебный год: <?php echo $data_Year?></p>
-
-1-5
-<?php
-$a = 1;
-$b = 2;
-// рассуждала в начале: если разница между числами 1 тогда
-$b = $b-$a;
-$a += $a;
-echo $a;
-echo $b;
-
-// но если разница между числами не известна, тогда:
-$a = $b + $a; // $a = 3  находим сумарное значение и присваиваем переменной а
-$b = $a - $b; //$b = 1 тогда b получается  разница между суммой и значением переменной b
-$a = $a - $b; //$a = 2 вычитаем из суммы новое значение b
-  echo $a;
-  echo $b;
-  ?>
+            <div class="row row-cols-1 row-cols-md-3">
+                <?php foreach ($products as $product): ?>
+                    <div class="card mb-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $product['title'] ?></h5>
+                            <p class="card-text"><?= $product['description'] ?></p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary">Посмотреть</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </main>
+        <footer>
+        </footer>
+    </div>
+</div>
+</body>
+</html>
